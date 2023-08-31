@@ -106,12 +106,12 @@ const TopBanner = () => {
             onClose={handleMoreMenuClose}
             TransitionComponent={Fade}
           >
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>FAQ</MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>Contact US</MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>Terms</MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>Privacy</MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>Offers</MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}>Reviews</MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/faq" className='menuitem-all-option'>FAQ</Link></MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/contactUs" className='menuitem-all-option'>Contact Us</Link></MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/term-condition" className='menuitem-all-option'>Terms</Link></MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/privacy-policy" className='menuitem-all-option'>Privacy</Link></MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/offer" className='menuitem-all-option'>Offers</Link></MenuItem>
+            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/reviews" className='menuitem-all-option'>Reviews</Link></MenuItem>
             
           </Menu>
           </p>

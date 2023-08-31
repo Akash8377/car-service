@@ -1,0 +1,114 @@
+.Review-Container{
+    color: #001B39;
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0.11339999735355377px;
+    text-align: left;
+}
+.review10 {
+    margin-top: 100px;
+    margin-left: 1%;
+  }
+  .review10 h3 {
+    color: #001b39;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.18px;
+  }
+  
+  .review11 {
+    margin-top: 20px;
+    margin-left: 1%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .review12 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .review12 img {
+    width: 264px;
+    height: 264px;
+  }
+  .review12 p {
+    margin: 0;
+    color: #001b39;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.18px;
+  }
+  
+  .review13 {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 500px 400px;
+    width: 100%;
+    gap:20px;
+  }
+  
+  .review14 {
+    border-radius: 20px;
+    background: #eee;
+    width: 420px;
+  }
+  
+  .review15 {
+    padding-top: 20px;
+    margin-left: 3%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .review16 p {
+    color: #001b39;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.18px;
+    margin: 0;
+  }
+  .review17 {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    width:280px;
+  }
+  .review17 i {
+    color: #fbbc04;
+  }
+  .review17 p{
+    color: #4A4A4A;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.225px;
+  }
+  .review14 p {
+    color: #282828;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 153.523%; /* 18.423px */
+    letter-spacing: 0.225px;
+    padding-left: 3%;
+    width: 94%;
+  }

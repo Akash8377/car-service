@@ -1,0 +1,33 @@
+.heading-faq {
+    display: flex;
+    color: #001B39;
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0.11339999735355377px;
+    gap:15px;
+    margin-left:20px;
+    align-items: center;
+}
+
+.custom-textarea {
+    width: 676px;
+    height: 163px;
+    top: 387px;
+    left: 24px;
+    border-radius: 15px;
+    border: 0.5px solid black;
+    padding: 10px;
+    margin-top: 50px;
+    background-color: #EEEEEE;
+  }
+  
+.custom-textarea::placeholder {
+    width: 560px;
+    height: 43px;
+    top: 412px;
+    left: 74px;
+    /* You can also apply additional styling if needed */
+  }
+  

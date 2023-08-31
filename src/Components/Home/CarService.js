@@ -3,8 +3,6 @@ import React from "react";
 const CarService = ()=>{
     return (
         <>
-         
-         
             <div className="home1">
                 <h2>Car Services Available In Hyderabad</h2>
                 <p>Get hassle-free and professional car service, car repair, wheel care services, cashless 
