@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,7 +6,8 @@ import Fade from '@mui/material/Fade';
 import {BsSearch} from 'react-icons'
 import './TopBanner.css'
 import { Link } from 'react-router-dom';
-
+import {MenuModal} from '../Login/Login';
+import {RegistrationModal} from '../Login/Registration';
 import {FaAngleDown,FaLocationDot} from  "react-icons/fa6";
 
 
@@ -14,6 +15,8 @@ const TopBanner = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [moreMenuAnchorEl, setMoreMenuAnchorEl] = React.useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
+  const [menuShow, setMenuShow] = useState(false);
+  const [registrationShow, setRegistrationShow] = useState(false);
 
   const handleMoreMenuClick = (event) => {
     setMoreMenuAnchorEl(event.currentTarget);
@@ -33,6 +36,7 @@ const TopBanner = () => {
 
   return (
     <>
+    
       <div className="top1">
         <div className="top2">
           <div className="top3">
@@ -116,8 +120,11 @@ const TopBanner = () => {
           </Menu>
           </p>
            
-            <p>Login</p>
+           <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
+           <button className='nav-button-2' onClick={() => setRegistrationShow(true)}>Registration</button>
           </div>
+          <MenuModal show={menuShow} onHide={()=>{setMenuShow(false)}}/>
+          <RegistrationModal show={registrationShow} onHide={()=>{setRegistrationShow(false)}}/>
         </div>
         <div className="top6">
           <div className="top7">

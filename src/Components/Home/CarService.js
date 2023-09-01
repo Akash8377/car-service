@@ -1,18 +1,20 @@
 import React from "react";
-
-const CarService = ()=>{
+import {Link} from 'react-router-dom';
+const CarService = () => {
     return (
         <>
             <div className="home1">
                 <h2>Car Services Available In Hyderabad</h2>
-                <p>Get hassle-free and professional car service, car repair, wheel care services, cashless 
+                <p>Get hassle-free and professional car service, car repair, wheel care services, cashless
                     insurance claim and much more in Hyderabad.
                 </p>
                 <div className="home2">
                     <div className="home4">
                         <div className="home3">
-                            <img src="./Image/35.png" alt="" />
-                            <p>Periodic Service</p>
+                            <Link to="/periodic-services">
+                                <img src="./Image/35.png" alt="" />
+                                <p>Periodic Service</p>
+                            </Link>
                         </div>
                         <div className="home3">
                             <img src="./Image/36.png" alt="" />
@@ -52,12 +54,12 @@ const CarService = ()=>{
                         </div>
                         <div className="home3">
                             <img src="./Image/43.png" alt="" />
-                            
+
                             <p>Clutch & Body Parts</p>
                         </div>
                         <div className="home3">
                             <img src="./Image/45.png" alt="" />
-                           
+
                             <p>Car Inspection</p>
                         </div>
                     </div>
@@ -67,7 +69,7 @@ const CarService = ()=>{
                     <img src="./Image/7.png" alt="" />
                     <img src="./Image/8.png" alt="" />
                 </div>
-            </div>          
+            </div>
         </>
     )
 }

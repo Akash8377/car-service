@@ -2,6 +2,7 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
+import '../../style/CustomerHeading.css'
 
 
 import { Link } from 'react-router-dom';
@@ -79,8 +80,8 @@ const TopBanner = () => {
 
           </div>
 
-          <div className='header-top-5'>
-            <input className='header-top-5' type="text" placeholder='Search' />
+          <div className='search-container'>
+            <input className='search-input' type="text" placeholder='Search' />
           </div>
 
 

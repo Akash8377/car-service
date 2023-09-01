@@ -9,7 +9,7 @@ import TermCondition from './Components/Pages/TermCondition';
 import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 import Offer from './Components/Pages/Offer';
 import Reviews from './Components/Pages/Reviews'
-
+import Periodic from './Components/Service/ServiceHeader'
 function App() {
   return (
     <div className="App">
@@ -24,6 +24,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
           <Route path="/offer" element={<Offer/>} />
           <Route path="/reviews" element={<Reviews/>} />
+          <Route path="/periodic-services" element={<Periodic/>} />
         </Routes>
       </BrowserRouter>
     </div>

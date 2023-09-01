@@ -1,6 +1,95 @@
-.header-top-5{
-    background-color: #5A5A59;
+/* CSS Styles for the Black Navigation Bar */
+
+.black-navbar {
+  background-color: black;
+  color: white;
+  padding: 10px 0;
+  
 }
-.logo-mini-heading{
-    text-decoration: none;
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+.location-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.location-container {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  margin-right: 5px;
+}
+
+.angle-icon {
+  margin-left: 5px;
+}
+
+.location-text {
+  font-weight: bold;
+}
+
+.search-container {
+  flex: 1;
+  margin: 0 20px;
+  position: relative;
+  top:23px
+}
+
+.search-input {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu p {
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.navbar-blog-button {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.more-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.more-option-container {
+  display: flex;
+  align-items: center;
+}
+
+.more-text {
+  font-weight: bold;
 }

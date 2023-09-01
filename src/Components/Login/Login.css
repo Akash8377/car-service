@@ -1,0 +1,114 @@
+/* MenuModal.css */
+.vertical-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.vertical-menu button {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registration-contain {
+    font-family: Poppins;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 29px;
+    letter-spacing: 0.14280793070793152px;
+    text-align: left;
+    color:#007bff;
+    margin-left: 87px;
+    margin-bottom: 20px;
+
+}
+
+.vertical-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.image-login-logo {
+    margin-left: 110px;
+    margin-bottom: 20px;
+}
+
+
+h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.input-container span {
+    padding: 5px;
+    background-color: #eee;
+    border-right: 1px solid #ccc;
+}
+
+input {
+    flex: 1;
+    border: none;
+    padding: 5px;
+    outline: none;
+}
+
+.continue-button {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.menu-modal {
+    position: fixed;
+    top: 0;
+    /* Adjust this value to control the vertical position */
+    right: 0;
+    /* This will place the modal on the right side */
+    transform: translateY(0%);
+    /* Adjust this for vertical centering if needed */
+    margin: 0;
+    /* Remove margin to fill the entire height of the viewport */
+    width: 400px;
+    /* Adjust the width as needed */
+    height: 100%;
+    /* Fill the entire height of the viewport */
+    background-color: #fff;
+    /* Set background color */
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.2);
+    /* Add shadow if desired */
+    z-index: 1050;
+    /* Ensure it's above other elements on the page */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content overflows */
+    padding: 20px;
+    /* Add padding as needed */
+}
