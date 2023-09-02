@@ -28,3 +28,38 @@ const PrivacyPolicy = () => {
 }
 
 export default PrivacyPolicy
+
+
+// import React, { useEffect, useState } from 'react';
+// import CustomHeader from './CustomerHeading'; 
+// import Footer from '../Footer/Footer';
+// import axios from 'axios';
+
+// const PrivacyPolicy = () => {
+//     const [policyData, setPolicyData] = useState({ privacy: '' }); 
+//     const fetchTerms = async () => {
+//         try {
+//             const response = await axios.get('https://kv-varlu.vercel.app//api/v1/privacy');
+//             setPolicyData({ privacy: response.data.terms }); 
+//         } catch (error) {
+//             console.error('Error fetching terms:', error);
+//         }
+//     };
+
+//     useEffect(() => {
+//         fetchTerms();
+//     }, []);
+
+//     return (
+//         <div>
+//             <CustomHeader />
+//             <div className='termCondition-main'>
+//                 <h2 className='termcondition-heading-1'>Privacy Policy</h2>
+//                 <p className='termcondition-paragraph-1'>{policyData.privacy.terms}</p>
+//             </div>
+//             <Footer />
+//         </div>
+//     );
+// }
+
+// export default PrivacyPolicy;

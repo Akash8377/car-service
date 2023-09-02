@@ -295,6 +295,7 @@ code {
   background: #eee;
   width: 100%;
   height: 100%;
+  text-decoration: none;
 }
 .home4 {
   padding-top: 20px;
@@ -303,11 +304,13 @@ code {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 20px;
+  text-decoration: none;
 }
 
 .home3 {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 }
 
 .home3 img {
@@ -322,6 +325,7 @@ code {
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.225px;
+  text-decoration: none;
 }
 
 .home5 {
@@ -578,7 +582,4 @@ width: 904px;
 height: 48px;
 top: 677px;
 left: 24px;
-
-
-
 }

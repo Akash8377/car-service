@@ -171,7 +171,12 @@ const TopBanner = () => {
             </div>
             <div className="top16">
                 <select>
-                    <option value="" >Select Your Car</option>
+                    <option value="" >Jeep</option>
+                    <option value="" >Hyundai</option>
+                    <option value="" >Maruti Suzuki</option>
+                    <option value="" >Bently</option>
+                    <option value="" >Mercedes</option>
+                    <option value="" >Lexus</option>
                 </select>
                 <input type="text" placeholder="Enter your Mobile Number" />
                 <button>Check Prices For Free</button>

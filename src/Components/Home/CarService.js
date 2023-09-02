@@ -1,5 +1,6 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './CarService'
 const CarService = () => {
     return (
         <>
@@ -11,7 +12,7 @@ const CarService = () => {
                 <div className="home2">
                     <div className="home4">
                         <div className="home3">
-                            <Link to="/periodic-services">
+                            <Link className="decoration-car-services" to="/periodic-services" style={{ textDecoration: 'none' }}>
                                 <img src="./Image/35.png" alt="" />
                                 <p>Periodic Service</p>
                             </Link>

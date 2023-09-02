@@ -10,8 +10,8 @@ const Periodic = () => {
     const settings = {
         dots: false,
         infinite: false,
-        speed: 500,
-        slidesToShow: 4.5,
+        speed: 1000,
+        slidesToShow: 5,
         slidesToScroll: 1,
         // Add more settings as needed
       };
@@ -22,23 +22,41 @@ const Periodic = () => {
         <div className="ServiceHeader-main">
         <div className="ServiceHeader-main-2">
           <Slider {...settings}>
-            <Link className="ServiceHeader-class-link-main" to="/">
-              Our Services
+            <Link className="ServiceHeader-class-link-main" to="/periodic-services">
+              Periodic Service
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-              Curated Custom Service
+            AC Service & Repair
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-              How Car Service Works?
+            Batteries
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-              Rating & Reviews
+            Tyres & Wheel
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-              Price List
+            Denting & Painting
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-              Frequently Asked Question
+              Detailing Service
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Car Spa & Cleansing
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Car Inspection
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Wind Shield & Lights
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Suspension & Fitments
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Clutch & Body Parts
+            </Link>
+            <Link className="ServiceHeader-class-link-main" to="/">
+            Periodic Service
             </Link>
           </Slider>
         </div>

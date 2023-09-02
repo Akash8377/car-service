@@ -1,0 +1,13 @@
+
+.otp-message {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    background-color: green; /* Change the background color as desired */
+    color: white; /* Change the text color as desired */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 14px;
+  }
+
+  

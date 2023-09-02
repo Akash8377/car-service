@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Modal } from 'react-bootstrap';
-import './Login.css'; 
+import './Login.css';
 import image39 from '../../image/39.png';
 
-export function RegistrationModal(props){
+
+export function RegistrationModal(props) {
   const [mobileNumber, setMobileNumber] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpSendingStatus, setOtpSendingStatus] = useState('');
+  const [otpVerificationStatus, setOtpVerificationStatus] = useState('');
+  const [otpInputDisabled, setOtpInputDisabled] = useState(false);
 
   const handleMobileNumberChange = (e) => {
     setMobileNumber(e.target.value);
   };
 
+  const handleOtpChange = (e) => {
+    setOtp(e.target.value);
+  };
+
   const handleContinueClick = async () => {
     try {
-      console.log('Before API request');
-      const {response} = await axios.post(
-        "https://kv-varlu.vercel.app/api/v1/register",
+      setOtpSendingStatus('Sending OTP...');
+
+      const { data } = await axios.post(
+        'https://kv-varlu.vercel.app/api/v1/register',
         {
           mobileNumber: mobileNumber,
         },
@@ -26,10 +36,60 @@ export function RegistrationModal(props){
           },
         }
       );
-      console.log('After API request');
-      console.log('API Response:', response.data);
+
+      setOtpSendingStatus('OTP sent successfully');
+      setOtpInputDisabled(false);
+
+      setTimeout(() => {
+        setOtpSendingStatus('');
+      }, 60000);
     } catch (error) {
       console.error('API Error:', error);
+
+      setOtpSendingStatus('Failed to send OTP');
+
+      setTimeout(() => {
+        setOtpSendingStatus('');
+      }, 4000);
+    }
+  };
+
+  const handleVerifyOtpClick = async () => {
+    try {
+      const { data } = await axios.post(
+        'https://kv-varlu.vercel.app/api/v1/verify/otp',
+        {
+          mobileNumber: mobileNumber,
+          otp: otp,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (data.success) {
+        setOtpVerificationStatus('OTP verified successfully');
+        // Add logic to handle successful login here
+      } else {
+        setOtpVerificationStatus('OTP verification failed');
+      }
+
+      setTimeout(() => {
+        setOtpVerificationStatus('');
+      }, 60000);
+
+      // Disable OTP input after verification
+      setOtpInputDisabled(true);
+    } catch (error) {
+      console.error('OTP Verification Error:', error);
+
+      setOtpVerificationStatus('OTP verification failed');
+
+      setTimeout(() => {
+        setOtpVerificationStatus('');
+      }, 6000);
     }
   };
 
@@ -43,6 +103,14 @@ export function RegistrationModal(props){
     >
       <Modal.Body className="Find_Work_Modal">
         <i className="fa-solid fa-xmark" onClick={() => props.onHide()}></i>
+
+        <div className={`otp-status ${otpSendingStatus === 'Sending OTP...' ? 'otp-sending' : (otpSendingStatus === 'OTP sent successfully' ? 'otp-success' : 'otp-failed')}`}>
+          {otpSendingStatus}
+        </div>
+
+        <div className={`otp-status ${otpVerificationStatus === 'OTP verified successfully' ? 'otp-success' : 'otp-failed'}`}>
+          {otpVerificationStatus}
+        </div>
 
         <div className="login-container">
           <img src={image39} alt="" />
@@ -60,6 +128,21 @@ export function RegistrationModal(props){
           <button className="continue-button" onClick={handleContinueClick}>
             Continue
           </button>
+
+          {otpSendingStatus === 'OTP sent successfully' && !otpInputDisabled ? (
+            <div className="otp-verification-container">
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={handleOtpChange}
+                disabled={otpInputDisabled}
+              />
+              <button className="verify-otp-button" onClick={handleVerifyOtpClick}>
+                Verify OTP
+              </button>
+            </div>
+          ) : null}
         </div>
       </Modal.Body>
     </Modal>
@@ -71,3 +154,4 @@ RegistrationModal.propTypes = {
 };
 
 export default RegistrationModal;
+

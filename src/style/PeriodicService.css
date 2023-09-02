@@ -1,0 +1,85 @@
+.periodic-service-main {
+    margin-left: 20px;
+}
+
+.periodic-service-main-heading {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0.2245868295431137px;
+    text-align: left;
+    color: #001B39;
+}
+
+.periodic-service-main-paragraph {
+    background-color: #E5E7E9;
+    display: flex;
+    gap: 8px;
+    width: 110px;
+    padding: 8px;
+    position: relative;
+    left: 51.5%
+}
+
+.inner-service-main {
+    display: flex;
+    gap: 30px
+}
+
+.periodic-text-1 {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.2245868295431137px;
+    text-align: left;
+}
+
+.periodic-text-2 {
+    display: flex;
+    gap: 8px
+}
+
+.periodic-text-2-main {
+    padding: 5px;
+    display: flex;
+    gap: 150px
+}
+
+.periodic-text-3-main {
+    padding: 5px;
+    display: flex;
+    gap: 260px
+}
+
+.periodic-text-4 {
+    display: flex;
+    padding: 5px;
+}
+
+.periodic-text-5 {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.12999999523162842px;
+    text-align: left;
+    color: #1DAF65;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+.periodic-text-6 {
+    font-family: Inter;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0.18000000715255737px;
+    text-align: left;
+    color: #282828
+}
+.periodic-text-7{
+    display: flex;
+    gap:48%
+}

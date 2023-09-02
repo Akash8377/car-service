@@ -9,7 +9,7 @@ import TermCondition from './Components/Pages/TermCondition';
 import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 import Offer from './Components/Pages/Offer';
 import Reviews from './Components/Pages/Reviews'
-import Periodic from './Components/Service/ServiceHeader'
+import Periodic from './Components/Service/PeriodicService'
 function App() {
   return (
     <div className="App">
