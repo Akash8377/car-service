@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+
+
+import React, { useState ,useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
-import {BsSearch} from 'react-icons'
+import { BsSearch } from 'react-icons'
 import './TopBanner.css'
 import { Link } from 'react-router-dom';
-import {MenuModal} from '../Login/Login';
-import {RegistrationModal} from '../Login/Registration';
-import {FaAngleDown,FaLocationDot} from  "react-icons/fa6";
+import { MenuModal } from '../Login/Login';
+import { RegistrationModal } from '../Login/Registration';
+import { FaAngleDown, FaLocationDot } from "react-icons/fa6";
 
 
 const TopBanner = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [moreMenuAnchorEl, setMoreMenuAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
   const [menuShow, setMenuShow] = useState(false);
   const [registrationShow, setRegistrationShow] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
   const handleMoreMenuClick = (event) => {
     setMoreMenuAnchorEl(event.currentTarget);
@@ -25,7 +28,7 @@ const TopBanner = () => {
   const handleMoreMenuClose = () => {
     setMoreMenuAnchorEl(null);
   };
-  
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,9 +37,28 @@ const TopBanner = () => {
     setAnchorEl(null);
   };
 
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by your browser.');
+    }
+  };
+
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
   return (
     <>
-    
       <div className="top1">
         <div className="top2">
           <div className="top3">
@@ -44,90 +66,85 @@ const TopBanner = () => {
             <h2>CAR SERVICE</h2>
           </div>
           <div>
-      <button
-        className="fade-button"
-        aria-controls={open ? 'fade-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      ><div className='location-container'>
-        <div className=''><FaLocationDot/> </div>
-        <div className=''> Hyderabad</div>
-        <div className=''> <FaAngleDown/></div>
-        </div>
-      </button>
-      <Menu
-        className="fade-menu"
-        MenuListProps={{
-          'aria-labelledby': 'fade-button',
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        <MenuItem className='select-your-city' onClick={handleClose}><FaLocationDot/> Select your City</MenuItem>
-        <input type="text" className='input-city-container-1' placeholder="" />
-        <MenuItem>
-          <input
-          className='input-city-container'
-            type="text"
-            placeholder= " Search"
-            onClick={(e) => e.stopPropagation()} // Prevent menu from closing when clicking the input
-          />
-        </MenuItem>
-        <MenuItem className="city-name" onClick={handleClose}>Hyderabad</MenuItem>
-        <MenuItem  className="city-name" onClick={handleClose}>New Delhi</MenuItem>
-        <MenuItem className="city-name" onClick={handleClose}>Mumbai</MenuItem>
-        <MenuItem className="city-name" onClick={handleClose}>Agra</MenuItem>
-      </Menu>
-      
-    </div>
+            <button
+              className="fade-button"
+              aria-controls={open ? 'fade-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
+              <div className='location-container'>
+                <div className=''><FaLocationDot /> </div>
+                <div className=''>{userLocation ? `${userLocation.latitude.toFixed(2)}, ${userLocation.longitude.toFixed(2)}` : 'Fetching Location...'}</div>
+                <div className=''> <FaAngleDown /></div>
+              </div>
+            </button>
+            <Menu
+              className="fade-menu"
+              MenuListProps={{
+                'aria-labelledby': 'fade-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem className='select-your-city' onClick={handleClose}><FaLocationDot /> Select your City</MenuItem>
+              <input type="text" className='input-city-container-1' placeholder="" />
+              <MenuItem>
+                <input
+                  className='input-city-container'
+                  type="text"
+                  placeholder=" Search"
+                  onClick={(e) => e.stopPropagation()} // Prevent menu from closing when clicking the input
+                />
+              </MenuItem>
+              <MenuItem className="city-name" onClick={handleClose}>Hyderabad</MenuItem>
+              <MenuItem className="city-name" onClick={handleClose}>New Delhi</MenuItem>
+              <MenuItem className="city-name" onClick={handleClose}>Mumbai</MenuItem>
+              <MenuItem className="city-name" onClick={handleClose}>Agra</MenuItem>
+            </Menu>
+          </div>
           <div className="top5">
             <p>Spares</p>
-            
             <Link className='blog-container-button' to="/blog">Blog</Link>
-            
             <p>
-            <button
-            className="fade-button-1"
-            aria-controls={moreMenuOpen ? 'more-fade-menu' : undefined}
-            aria-haspopup="true"
-            onClick={handleMoreMenuClick}
-          >
-            <div className='more-option-container'>
-              <div className=''>More</div>
-            </div>
-          </button>
-          
-          <Menu
-            className="fade-menu custom-width-menu"
-            MenuListProps={{
-              'aria-labelledby': 'fade-button',
-            }}
-            anchorEl={moreMenuAnchorEl}
-            open={moreMenuOpen}
-            onClose={handleMoreMenuClose}
-            TransitionComponent={Fade}
-          >
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/faq" className='menuitem-all-option'>FAQ</Link></MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/contactUs" className='menuitem-all-option'>Contact Us</Link></MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/term-condition" className='menuitem-all-option'>Terms</Link></MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/privacy-policy" className='menuitem-all-option'>Privacy</Link></MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/offer" className='menuitem-all-option'>Offers</Link></MenuItem>
-            <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/reviews" className='menuitem-all-option'>Reviews</Link></MenuItem>
-            
-          </Menu>
-          </p>
-           
-           <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
-           <button className='nav-button-2' onClick={() => setRegistrationShow(true)}>Registration</button>
+              <button
+                className="fade-button-1"
+                aria-controls={moreMenuOpen ? 'more-fade-menu' : undefined}
+                aria-haspopup="true"
+                onClick={handleMoreMenuClick}
+              >
+                <div className='more-option-container'>
+                  <div className=''>More</div>
+                </div>
+              </button>
+              <Menu
+                className="fade-menu custom-width-menu"
+                MenuListProps={{
+                  'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={moreMenuAnchorEl}
+                open={moreMenuOpen}
+                onClose={handleMoreMenuClose}
+                TransitionComponent={Fade}
+              >
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/faq" className='menuitem-all-option'>FAQ</Link></MenuItem>
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/contactUs" className='menuitem-all-option'>Contact Us</Link></MenuItem>
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/term-condition" className='menuitem-all-option'>Terms</Link></MenuItem>
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/privacy-policy" className='menuitem-all-option'>Privacy</Link></MenuItem>
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/offer" className='menuitem-all-option'>Offers</Link></MenuItem>
+                <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/reviews" className='menuitem-all-option'>Reviews</Link></MenuItem>
+              </Menu>
+            </p>
+            <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
+            <button className='nav-button-2' onClick={() => setRegistrationShow(true)}>Registration</button>
           </div>
-          <MenuModal show={menuShow} onHide={()=>{setMenuShow(false)}}/>
-          <RegistrationModal show={registrationShow} onHide={()=>{setRegistrationShow(false)}}/>
+          <MenuModal show={menuShow} onHide={() => { setMenuShow(false) }} />
+          <RegistrationModal show={registrationShow} onHide={() => { setRegistrationShow(false) }} />
         </div>
         <div className="top6">
-          <div className="top7">
+        <div className="top7">
             <div className="top8">
               <h4>Experience The Best Car Services In Hyedrabad</h4>
               <p>We provide Our Services in over 100+ Major Cities also.</p>
@@ -135,9 +152,9 @@ const TopBanner = () => {
             <div className="top9">
               <div className='lorem-container-p'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                nec egestas ligula. Nulla facilisi. Phasellus faucibus <br/>ligula id
+                nec egestas ligula. Nulla facilisi. Phasellus faucibus <br />ligula id
                 mauris varius, eget faucibus lorem fringilla. Vivamus ut felis
-                porta, luctus libero eget, feugiat velit. Sed <br/>aliquet leo et ex
+                porta, luctus libero eget, feugiat velit. Sed <br />aliquet leo et ex
                 sodales,
               </div>
             </div>
@@ -150,8 +167,8 @@ const TopBanner = () => {
                 </div>
               </div>
               <div className="top11">
-                
-                <img src='/Image/Mask group.png' alt=''/>
+
+                <img src='/Image/Mask group.png' alt='' />
                 <div className="top12">
                   <h4>2,50,000</h4>
                   <p>Happy Customers</p>
@@ -170,16 +187,16 @@ const TopBanner = () => {
               <p>4.7/5</p>
             </div>
             <div className="top16">
-                <select>
-                    <option value="" >Jeep</option>
-                    <option value="" >Hyundai</option>
-                    <option value="" >Maruti Suzuki</option>
-                    <option value="" >Bently</option>
-                    <option value="" >Mercedes</option>
-                    <option value="" >Lexus</option>
-                </select>
-                <input type="text" placeholder="Enter your Mobile Number" />
-                <button>Check Prices For Free</button>
+              <select>
+                <option value="" >Jeep</option>
+                <option value="" >Hyundai</option>
+                <option value="" >Maruti Suzuki</option>
+                <option value="" >Bently</option>
+                <option value="" >Mercedes</option>
+                <option value="" >Lexus</option>
+              </select>
+              <input type="text" placeholder="Enter your Mobile Number" />
+              <button>Check Prices For Free</button>
             </div>
           </div>
         </div>
@@ -189,3 +206,6 @@ const TopBanner = () => {
 };
 
 export default TopBanner;
+
+
+

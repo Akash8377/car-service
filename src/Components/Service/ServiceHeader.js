@@ -25,28 +25,28 @@ const Periodic = () => {
             <Link className="ServiceHeader-class-link-main" to="/periodic-services">
               Periodic Service
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/services-repair">
             AC Service & Repair
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/batteries">
             Batteries
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/tyres">
             Tyres & Wheel
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/denting-repair">
             Denting & Painting
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/detailing-service">
               Detailing Service
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/spa-service">
             Car Spa & Cleansing
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
             Car Inspection
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/wind-sheild">
             Wind Shield & Lights
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
@@ -56,7 +56,7 @@ const Periodic = () => {
             Clutch & Body Parts
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/">
-            Periodic Service
+            Insurance
             </Link>
           </Slider>
         </div>

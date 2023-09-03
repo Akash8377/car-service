@@ -10,4 +10,17 @@
     font-size: 14px;
   }
 
+  .verify-otp-button {
+    background-color: #007bff; /* Change the background color to your preferred color */
+    color: #fff; /* Change the text color to your preferred color */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .verify-otp-button:hover {
+    background-color: #0056b3; /* Change the hover background color to your preferred color */
+  }
   

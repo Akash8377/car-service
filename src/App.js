@@ -8,8 +8,15 @@ import ContactUS from './Components/Pages/ContactUs';
 import TermCondition from './Components/Pages/TermCondition';
 import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 import Offer from './Components/Pages/Offer';
-import Reviews from './Components/Pages/Reviews'
-import Periodic from './Components/Service/PeriodicService'
+import Reviews from './Components/Pages/Reviews';
+import Periodic from './Components/Service/PeriodicService';
+import ServiceRepair from './Components/Service/ServiceRepair';
+import Batteries from './Components/Service/Batteries';
+import Tyres  from './Components/Service/Tyres';
+import Denting from './Components/Service/DentingRepairing';
+import Detailing from './Components/Service/DetailingService';
+import SPA from './Components/Service/ServiceSpa';
+import Wind from './Components/Service/WindShield';
 function App() {
   return (
     <div className="App">
@@ -25,6 +32,13 @@ function App() {
           <Route path="/offer" element={<Offer/>} />
           <Route path="/reviews" element={<Reviews/>} />
           <Route path="/periodic-services" element={<Periodic/>} />
+          <Route path="/services-repair" element={<ServiceRepair/>} />
+          <Route path="/batteries" element={<Batteries/>} />
+          <Route path="/tyres" element={<Tyres/>} />
+          <Route path="/denting-repair" element={<Denting/>} />
+          <Route path="/detailing-service" element={<Detailing/>} />
+          <Route path="/spa-service" element={<SPA/>} />
+          <Route path="/wind-sheild" element={<Wind/>} />
         </Routes>
       </BrowserRouter>
     </div>

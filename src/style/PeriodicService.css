@@ -81,5 +81,22 @@
 }
 .periodic-text-7{
     display: flex;
-    gap:48%
+    gap:78%;
+    border-bottom: 1px solid #B0B0B0;
+    width:63%
+}
+.add-cart-method{
+    background-color: white;
+    color: #001B39;
+    padding: 2px 2px; /* Adjust the padding as needed */
+    border: 1px solid #001B39;
+    height: 40px;
+}
+.related-blog-main-container{
+    display: flex;
+    gap:10px;
+    margin-left:20px;
+}
+.Review-Container-6{
+    margin-left:20px;
 }

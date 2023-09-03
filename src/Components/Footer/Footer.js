@@ -1,5 +1,6 @@
 import React from "react";
-import Link from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -9,32 +10,32 @@ const Footer = () => {
           <div className="foot3">
             <h4>ABOUT US</h4>
             <div className="foot4">
-              <p>FAQs</p>
-              <p>Contact Us</p>
-              <p>Careers</p>
-              <p>Terms & Conditions</p>
-              <p>Privacy Policy</p>
+              <p><Link className="footer-main-link" to="/faq">FAQ's</Link></p>
+              <p><Link className="footer-main-link" to="/contactUs">Contact Us</Link></p>
+              <p><Link className="footer-main-link" to="/">Careers</Link></p>
+              <p><Link className="footer-main-link" to="/term-condition">Terms & Conditions</Link></p>
+              <p><Link className="footer-main-link" to="/privacy-policy">Privacy Policy</Link></p>
               <p>Car Service Patners</p>
               <p>Workshop Locator</p>
-              <p>Offers</p>
-              <p>Reviews</p>
+              <p><Link className="footer-main-link" to="/offer">Offers</Link></p>
+              <p><Link className="footer-main-link" to="/reviews">Reviews</Link></p>
               <p>Directory</p>
             </div>
           </div>
           <div className="foot3">
             <h4>OUR SERVICES</h4>
             <div className="foot4">
-              <p>Scheduled Services</p>
-              <p>AC Services</p>
-              <p>Cleaning & Detailing</p>
-              <p>Lights & Figments</p>
-              <p>Denting Painting</p>
-              <p>Insurance Services</p>
-              <p>Custom Repair</p>
-              <p>Batteries</p>
-              <p>Tyres</p>
-              <p>Detailing Services</p>
-              <p>Windshields & Glass</p>
+            <p><Link className="footer-main-link" to="/periodic-services"> Scheduled Services</Link></p>
+            <p><Link className="footer-main-link" to="/services-repair">AC Services</Link></p>
+            <p><Link className="footer-main-link" to="/spa-service">Cleaning & Detailing</Link></p>
+            <p><Link className="footer-main-link" to="/">Lights & Fitments</Link></p>
+            <p><Link className="footer-main-link" to="/denting-repair">Denting Painting</Link></p>
+            <p><Link className="footer-main-link" to="/">Insurance Services</Link></p>
+            <p><Link className="footer-main-link" to="/">Custom Repair</Link></p>
+            <p><Link className="footer-main-link" to="/batteries">Batteries</Link></p>
+            <p><Link className="footer-main-link" to="/tyres">Tyres</Link></p>
+            <p><Link className="footer-main-link" to="/detailing-service">Detailing Services</Link></p>
+            <p><Link className="footer-main-link" to="/wind-sheild">Windshields & Glass</Link></p>
             </div>
           </div>
           <div className="foot3">

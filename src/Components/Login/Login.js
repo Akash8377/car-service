@@ -37,12 +37,12 @@ export function MenuModal(props) {
         }
       );
 
-      setOtpSendingStatus(data.message); // Update the status with the message from the API response
+      setOtpSendingStatus('OTP sent successfully');
       setOtpInputDisabled(false);
 
       setTimeout(() => {
         setOtpSendingStatus('');
-      }, 120000);
+      }, 6000000);
     } catch (error) {
       console.error('API Error:', error);
 
@@ -70,7 +70,7 @@ export function MenuModal(props) {
       );
 
       if (data.success) {
-        setOtpVerificationStatus(data.message); // Update the status with the message from the API response
+        setOtpVerificationStatus('OTP verified successfully');
         // Add logic to handle successful login here
       } else {
         setOtpVerificationStatus('OTP verification failed');
@@ -78,7 +78,7 @@ export function MenuModal(props) {
 
       setTimeout(() => {
         setOtpVerificationStatus('');
-      }, 60000);
+      }, 6000000);
 
       // Disable OTP input after verification
       setOtpInputDisabled(true);

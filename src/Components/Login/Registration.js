@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import './Login.css';
 import image39 from '../../image/39.png';
-
 
 export function RegistrationModal(props) {
   const [mobileNumber, setMobileNumber] = useState('');
@@ -12,6 +11,7 @@ export function RegistrationModal(props) {
   const [otpSendingStatus, setOtpSendingStatus] = useState('');
   const [otpVerificationStatus, setOtpVerificationStatus] = useState('');
   const [otpInputDisabled, setOtpInputDisabled] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false); // Track registration status
 
   const handleMobileNumberChange = (e) => {
     setMobileNumber(e.target.value);
@@ -40,9 +40,15 @@ export function RegistrationModal(props) {
       setOtpSendingStatus('OTP sent successfully');
       setOtpInputDisabled(false);
 
+      // Extract the OTP from the API response
+      const otpFromResponse = data.user.otp;
+
+      // Set the OTP in the state
+      setOtp(otpFromResponse);
+
       setTimeout(() => {
         setOtpSendingStatus('');
-      }, 60000);
+      }, 6000000);
     } catch (error) {
       console.error('API Error:', error);
 
@@ -71,7 +77,8 @@ export function RegistrationModal(props) {
 
       if (data.success) {
         setOtpVerificationStatus('OTP verified successfully');
-        // Add logic to handle successful login here
+        // Set registration status to true when OTP is verified
+        setIsRegistered(true);
       } else {
         setOtpVerificationStatus('OTP verification failed');
       }
@@ -91,6 +98,12 @@ export function RegistrationModal(props) {
         setOtpVerificationStatus('');
       }, 6000);
     }
+  };
+
+  const handleRegisterClick = () => {
+    // Add logic to complete the registration process
+    // You can navigate to the registration page or perform any other necessary actions
+    console.log('Registration completed');
   };
 
   return (
@@ -143,6 +156,13 @@ export function RegistrationModal(props) {
               </button>
             </div>
           ) : null}
+
+          {/* Display registration button when OTP is verified */}
+          {isRegistered && (
+            <button className="register-button" onClick={handleRegisterClick}>
+              Register
+            </button>
+          )}
         </div>
       </Modal.Body>
     </Modal>
@@ -154,4 +174,3 @@ RegistrationModal.propTypes = {
 };
 
 export default RegistrationModal;
-
