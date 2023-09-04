@@ -43,7 +43,7 @@ const Periodic = () => {
             <Link className="ServiceHeader-class-link-main" to="/spa-service">
             Car Spa & Cleansing
             </Link>
-            <Link className="ServiceHeader-class-link-main" to="/">
+            <Link className="ServiceHeader-class-link-main" to="/inspection">
             Car Inspection
             </Link>
             <Link className="ServiceHeader-class-link-main" to="/wind-sheild">

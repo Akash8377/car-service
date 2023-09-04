@@ -10,776 +10,169 @@ import image59 from '../../image/59.png';
 import image60 from '../../image/60.png';
 import image61 from '../../image/61.png';
 import image62 from '../../image/62.png';
-import image63 from '../../image/63.png';
-import image53 from '../../image/53.png';
-import image54 from '../../image/54.png';
-import image55 from '../../image/54.png';
+import image64 from '../../image/64.png';
+import Cart from './AddCart';
 import image66 from '../../image/66.png';
-import image67 from '../../image/67.png';
-import image68 from '../../image/68.png';
-import Footer from '../Footer/Footer'
+
+
+import Footer from '../Footer/Footer';
+import ReviewDetails from './ReviewDetail'
 
 const ProductItem = ({ title, price, imageUrl }) => {
-    const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [cart, setCart] = useState([]);
 
-    const handleAddToCart = () => {
-
-        setCart([...cart, { title, price, imageUrl }]);
-        setIsAddedToCart(true);
+    const handleAddToCart = (item) => {
+      setCart([...cart, item]);
     };
+
+    const data = [
+        {
+            mainHeading: "Service Packages",
+            image: imager56,
+            subHeading: "Regular AC Service",
+            miniSubHeading:"• 600 kms or 2 Month Warranty      •  Every 6000 kms or 3 Months (Recommended)",
+            price:"2299"
+        },
+        {
+            mainHeading: "",
+            image: image57,
+            subHeading: "High Performance AC Service",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty   •  Every 20000 kms or 12 Months (Recommended)",
+            price:"2299"
+        },
+        {
+            mainHeading: "AC Fitments",
+            image: image58,
+            subHeading: "Cooling Coil Replacement",
+            miniSubHeading:"• 2 Month Warranty     •  Recommended - In case of No Cooling",
+            price:"1299"
+        },
+        {
+            mainHeading: "",
+            image: image59,
+            subHeading: "Compressor Replacement",
+            miniSubHeading:"• 2 Month Warranty                         •  Every 20000 kms or 12 Months (Recommended)",
+            price:"1299"
+        },
+        {
+            mainHeading: "",
+            image: image60,
+            subHeading: "Heating Coil Replacement",
+            miniSubHeading:"• 2 Month Warranty                         •  Every 20000 kms or 12 Months (Recommended)",
+            price:"1299"
+        },
+        {
+            mainHeading: "",
+            image: image61,
+            subHeading: "V-Belt Replacement",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty      •  Every 6000 kms or 3 Months (Recommended)",
+            price:"2299"
+        },
+        {
+            mainHeading: "",
+            image: image62,
+            subHeading: "AC Blower Motor Replacement",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty   •  Every 20000 kms or 12 Months (Recommended)",
+            price:"2299"
+        },
+        {
+            mainHeading: "Radiators",
+            image: image66,
+            subHeading: "Radiator Placement",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty   •  Every 20000 kms or 12 Months (Recommended)",
+            price:"2299"
+        },
+        {
+            mainHeading: "",
+            image: image64,
+            subHeading: "Radiator Fan Motor Replacement",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty      •  Every 6000 kms or 3 Months (Recommended)",
+            price:"1299"
+        },
+        {
+            mainHeading: "",
+            image: imager56,
+            subHeading: "Radiator Flush & Clean",
+            miniSubHeading:"• 2000 kms or 2 Month Warranty      •  Every 6000 kms or 3 Months (Recommended)",
+            price:"1299"
+        },
+    ];
 
     return (
         <div>
-            <ServiceHeader />
-            <div className='periodic-service-main'>
-                <h2 className='periodic-service-main-heading'>Service Packages</h2>
+      <ServiceHeader />
+      <div className='add-cart-header'>
+        <div>
+          {data && data.length > 0 ? (
+            data.map((ele, i) => (
+              <div className='periodic-service-main' key={i}>
+                <h2 className='periodic-service-main-heading'>{ele.mainHeading}</h2>
                 <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
+                  <img src={image42} alt='' height='20px' width='20px' />4 Hrs Taken
+                </p>
 
                 <div className='inner-service-main'>
-                    <img
-                        src={imager56}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Regular AC Service</h3>
-                        <h5 className='periodic-text-1'> • 600 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                  <img
+                    src={ele.image}
+                    alt={ele.title}
+                    width='192px'
+                    height='190px'
+                    style={{ borderRadius: '30px' }}
+                  />
+                  <div>
+                    <h3>{ele.subHeading}</h3>
+                    <h5 className='periodic-text-1'>{ele.miniSubHeading}</h5>
+                    <div className='periodic-text-2-main'>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Wiper Fluid Replacement
+                      </div>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Battery Water Top Up
+                      </div>
                     </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
 
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image57}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>High Performance AC Service</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                    <div className='periodic-text-3-main'>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Car Wash
+                      </div>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Interior Vacuuming ( Carpet & Seats )
+                      </div>
                     </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-                <h2 className='periodic-service-main-heading'>AC Fitments</h2>
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image58}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Cooling Coil Replacement</h3>
-                        <h5 className='periodic-text-1'>  • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                    <div className='periodic-text-4'>
+                      <img src={image43} alt='' /> Interior Vacuuming ( Carpet & Seats )
                     </div>
+                    <div className='periodic-text-5'>+ 4 more View All</div>
+                  </div>
                 </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
+                <div className='periodic-text-7'>
+                  <h3 className='periodic-text-6'>₹ {ele.price}</h3>
 
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image59}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Compressor Replacement</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
+                  <button
+                    onClick={() =>
+                      handleAddToCart({
+                        title: ele.mainHeading,
+                        price: ele.price,
+                        imageUrl: ele.image,
+                      })
+                    }
+                    className='add-cart-method'
+                  >
+                    + Add to Cart
+                  </button>
 
                 </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image63}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Heating Coil Replacement</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image61}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>V-Belt Replacement</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image60}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>AC Blower Motor Replacement</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image62}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Brake Drums Turning</h3>
-                        <h5 className='periodic-text-1'> • 2000 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-                <h2 className='periodic-service-main-heading'>Radiators</h2>
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image66}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Radiator Placement</h3>
-                        <h5 className='periodic-text-1'> • 600 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image67}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Radiator Fan Motor Replacement</h3>
-                        <h5 className='periodic-text-1'> • 600 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-
-            <div className='periodic-service-main'>
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image68}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Radiator Flush & Clean</h3>
-                        <h5 className='periodic-text-1'> • 600 kms or 2 Month Warranty • Every 6000 kms or 3 Months (Recommended)</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div>
-                <h3 className="Review-Container-6">Related Blogs</h3>
-                <div className='related-blog-main-container'>
-                    <img src={image53} alt="" />
-                    <img src={image54} alt="" />
-                    <img src={image55} alt="" />
-                </div>
-            </div>
-
-
-            <div>
-
-                <div className="review10">
-                    <h3 className="Review-Container">Recent Review & Rating on Periodic Services</h3>
-                    <div className="review13">
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/20.png" alt="" />
-                                <div className="review16">
-                                    <p>Mohith Reddy</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Absolutely recommended garage for everyone..!! Recently I had a issue of oil filters and engine
-                                m ounts replacement for my car BMW and i don't want my car to showroom because it will usually
-                                takes 1-2 weeks , so then my friend suggested this garage. And even gave the manager number.
-                                The manager there Sai is very professional and friendly person. With in two days they resolved
-                                my issue and even they gave an astonishing general service
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/21.png" alt="" />
-                                <div className="review16">
-                                    <p>Shiva Kumar</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>4 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>This is a very trusted most popular and very amazing service provider mechanic luxury car service centre they have very
-                                best experience in this field for providing very best service (I car service) very good experience with maneger Sai
-
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/22.png" alt="" />
-                                <div className="review16">
-                                    <p>Meghana Chapala</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Highly recommended this service stationThey have done a very good job in fixing all my issues in one go. i had done my car bumper painting and general service with other issues.all issues fixed perfectly....
-                                Good job...👏
-                                Service: Auto body & trim repair
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/23.png" alt="" />
-                                <div className="review16">
-                                    <p>Atharva Kulkarni</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 MONTH AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Excellent service. Sai helped me when I was stranded on highway (100km from city) at night due to battery malfunction. The towing of my car was arranged by Sai, then he repaired the car in quick time. He made sure that I understand what part was to be repaired and why. With the seamless service, I have become his all time customer :)
-
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/24.png" alt="" />
-                                <div className="review16">
-                                    <p>Anand K</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Exceeded my expectations in both the quality and transperency. I regret sticking with main dealers and not coming to outside vendors earlier. Thanks to i car service and their thorough, knowledgeable and customer-focused approach, I have now made a start on work that should have been carried out during the three and a half years in which I have owned the car. I will happily go back to i car service in six months to continue this process.
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/25.png" alt="" />
-                                <div className="review16">
-                                    <p>Avinash Abhi</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>4 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Very much pleased with work . Always makes me happy by looking at this work . Thank you I car service.
-                                Service: Upholstery & interior restoration
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Footer />
-
-
+              </div>
+            ))
+          ) : (
+            <p>No data available.</p>
+          )}
         </div>
+        <Cart className="add-cart-method" cartItems={cart} /> 
+      </div>div
+      <ReviewDetails />
+      <Footer />
+    </div>
     );
 };
 

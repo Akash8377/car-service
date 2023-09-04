@@ -123,6 +123,9 @@ const TopBanner = () => {
             </p>
 
             <p>Customer</p>
+            <p>
+            
+            </p>
           </div>
         </div>
 

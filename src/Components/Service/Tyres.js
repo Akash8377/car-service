@@ -8,449 +8,138 @@ import image76 from '../../image/76.png';
 import image77 from '../../image/77.png';
 import image78 from '../../image/78.png';
 import image79 from '../../image/79.png';
-import image53 from '../../image/53.png';
-import image54 from '../../image/54.png';
-import image55 from '../../image/54.png';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
+import ReviewDetails from './ReviewDetail';
+import Cart from './AddCart';
+import { Link } from 'react-router-dom';
 
-const ProductItem = ({ title, price, imageUrl }) => {
-    const [isAddedToCart, setIsAddedToCart] = useState(false);
-    const [cart, setCart] = useState([]);
+const ProductItem = () => {
+  const [cart, setCart] = useState([]);
 
-    const handleAddToCart = () => {
+  const handleAddToCart = (item) => {
+    setCart([...cart, item]);
+  };
 
-        setCart([...cart, { title, price, imageUrl }]);
-        setIsAddedToCart(true);
-    };
+  const data = [
+    {
+      mainHeading: 'Apollo',
+      image: image75,
+      subHeading: 'Apollo Amazer 4G Life',
+      miniSubHeading:
+        '• Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included',
+      price: '2299',
+    },
+    {
+      mainHeading: 'MRF',
+      image: image76,
+      subHeading: 'MRF ZTX',
+      miniSubHeading:
+        '• Size - 175/60 R15 80T • 6 Years Warranty • Tubeless • Fitting Cost Included',
+      price: '2299',
+    },
+    {
+      mainHeading: 'Bridgestone',
+      image: image77,
+      subHeading: 'Bridgestone Ecopia EP150',
+      miniSubHeading:
+        '• Size - 175/60 R15 60T    • 6 Years Warranty     • Tubeless    • Fitting Cost Included',
+      price: '2299',
+    },
+    {
+      mainHeading: 'CEAT',
+      image: image78,
+      subHeading: 'CEAT Milaze X3',
+      miniSubHeading:
+        '• Size - 175/60 R15 90T    • 6 Years Warranty     • Tubeless    • Fitting Cost Included',
+      price: '1299',
+    },
+    {
+      mainHeading: 'Good Year',
+      image: image79,
+      subHeading: 'GoodYear Assu Duraplus 2 TT',
+      miniSubHeading: '• GoodYear Assu Duraplus 2 TT',
+      price: '2299',
+    },
+  ];
 
-    return (
+ 
+
+  return (
+    <div>
+      <ServiceHeader />
+      <div className='add-cart-header'>
         <div>
-            <ServiceHeader />
-            <div className='periodic-service-main'>
-                <h2 className='periodic-service-main-heading'>Apollo</h2>
+          {data && data.length > 0 ? (
+            data.map((ele, i) => (
+              <div className='periodic-service-main' key={i}>
+                <h2 className='periodic-service-main-heading'>{ele.mainHeading}</h2>
                 <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
+                  <img src={image42} alt='' height='20px' width='20px' />4 Hrs Taken
+                </p>
 
                 <div className='inner-service-main'>
-                    <img
-                        src={image75}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Amaron (60 Months Warranty)</h3>
-                        <h5 className='periodic-text-1'>• Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                  <img
+                    src={ele.image}
+                    alt={ele.title}
+                    width='192px'
+                    height='190px'
+                    style={{ borderRadius: '30px' }}
+                  />
+                  <div>
+                    <h3>{ele.subHeading}</h3>
+                    <h5 className='periodic-text-1'>{ele.miniSubHeading}</h5>
+                    <div className='periodic-text-2-main'>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Wiper Fluid Replacement
+                      </div>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Battery Water Top Up
+                      </div>
                     </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 2299</h3>
 
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-           
-
-            <div className='periodic-service-main'>
-                <h2 className='periodic-service-main-heading'>MRF</h2>
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image76}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>MRF ZTX</h3>
-                        <h5 className='periodic-text-1'> • Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included </h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                    <div className='periodic-text-3-main'>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Car Wash
+                      </div>
+                      <div className='periodic-text-2'>
+                        <img src={image43} alt='' /> Interior Vacuuming ( Carpet & Seats )
+                      </div>
                     </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image77} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-                    <h2 className='periodic-service-main-heading'>Bridgestone</h2>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image77}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>Bridgestone Ecopia EP150</h3>
-                        <h5 className='periodic-text-1'>• Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included </h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
+                    <div className='periodic-text-4'>
+                      <img src={image43} alt='' /> Interior Vacuuming ( Carpet & Seats )
                     </div>
+                    <div className='periodic-text-5'>+ 4 more View All</div>
+                  </div>
                 </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
+                <div className='periodic-text-7'>
+                  <h3 className='periodic-text-6'>₹ {ele.price}</h3>
 
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-                    <h2 className='periodic-service-main-heading'>CEAT</h2>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image78}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>CEAT Milaze X3</h3>
-                        <h5 className='periodic-text-1'>• Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
+                  <button
+                    onClick={() =>
+                      handleAddToCart({
+                        title: ele.mainHeading,
+                        price: ele.price,
+                        imageUrl: ele.image,
+                      })
+                    }
+                    className='add-cart-method'
+                  >
+                    + Add to Cart
+                  </button>
 
                 </div>
-            </div>
-
-
-
-            <div className='periodic-service-main'>
-
-                <p className='periodic-service-main-paragraph'>
-                    <img src={image42} alt="" height="20px" width="20px" />4 Hrs Taken</p>
-                    <h2 className='periodic-service-main-heading'>Good Year</h2>
-
-                <div className='inner-service-main'>
-                    <img
-                        src={image79}
-                        alt={title}
-                        width="192px"
-                        height="190px"
-                        style={{ borderRadius: '30px' }}
-                    />
-                    <div>
-                        <h3>GoodYear Assu Duraplus 2 TT</h3>
-                        <h5 className='periodic-text-1'>•Size - 175/60 R15 90T • 6 Years Warranty • Tubeless • Fitting Cost Included</h5>
-                        <div className='periodic-text-2-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Wiper Fluid Replacement
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Battery Water Top Up
-                            </div>
-                        </div>
-
-                        <div className='periodic-text-3-main'>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Car Wash
-                            </div>
-                            <div className='periodic-text-2'>
-                                <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                            </div>
-                        </div>
-                        <div className='periodic-text-4'>
-                            <img src={image43} alt="" /> Interior Vacuuming ( Carpet & Seats )
-                        </div>
-                        <div className='periodic-text-5'>
-                            + 4 more View All
-                        </div>
-                    </div>
-                </div>
-                <div className="periodic-text-7">
-                    <h3 className='periodic-text-6'>₹ 1299</h3>
-
-                    <button
-                        onClick={handleAddToCart}
-                        className='add-cart-method'
-                    >
-                        {isAddedToCart ? 'Added to Cart' : '+ Add to Cart'}
-                    </button>
-
-                </div>
-            </div>
-
-
-           
-
-
-            <div>
-                <h3 className="Review-Container-6">Related Blogs</h3>
-                <div className='related-blog-main-container'>
-                    <img src={image53} alt="" />
-                    <img src={image54} alt="" />
-                    <img src={image55} alt="" />
-                </div>
-            </div>
-
-
-            <div>
-
-                <div className="review10">
-                    <h3 className="Review-Container">Recent Review & Rating on Periodic Services</h3>
-                    <div className="review13">
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/20.png" alt="" />
-                                <div className="review16">
-                                    <p>Mohith Reddy</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Absolutely recommended garage for everyone..!! Recently I had a issue of oil filters and engine
-                                m ounts replacement for my car BMW and i don't want my car to showroom because it will usually
-                                takes 1-2 weeks , so then my friend suggested this garage. And even gave the manager number.
-                                The manager there Sai is very professional and friendly person. With in two days they resolved
-                                my issue and even they gave an astonishing general service
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/21.png" alt="" />
-                                <div className="review16">
-                                    <p>Shiva Kumar</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>4 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>This is a very trusted most popular and very amazing service provider mechanic luxury car service centre they have very
-                                best experience in this field for providing very best service (I car service) very good experience with maneger Sai
-
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/22.png" alt="" />
-                                <div className="review16">
-                                    <p>Meghana Chapala</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Highly recommended this service stationThey have done a very good job in fixing all my issues in one go. i had done my car bumper painting and general service with other issues.all issues fixed perfectly....
-                                Good job...👏
-                                Service: Auto body & trim repair
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/23.png" alt="" />
-                                <div className="review16">
-                                    <p>Atharva Kulkarni</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 MONTH AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Excellent service. Sai helped me when I was stranded on highway (100km from city) at night due to battery malfunction. The towing of my car was arranged by Sai, then he repaired the car in quick time. He made sure that I understand what part was to be repaired and why. With the seamless service, I have become his all time customer :)
-
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/24.png" alt="" />
-                                <div className="review16">
-                                    <p>Anand K</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>1 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Exceeded my expectations in both the quality and transperency. I regret sticking with main dealers and not coming to outside vendors earlier. Thanks to i car service and their thorough, knowledgeable and customer-focused approach, I have now made a start on work that should have been carried out during the three and a half years in which I have owned the car. I will happily go back to i car service in six months to continue this process.
-                            </p>
-                        </div>
-                        <div className="review14">
-                            <div className="review15">
-                                <img src="./Image/25.png" alt="" />
-                                <div className="review16">
-                                    <p>Avinash Abhi</p>
-                                    <div className="review17">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <p>4 WEEK AGO</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Very much pleased with work . Always makes me happy by looking at this work . Thank you I car service.
-                                Service: Upholstery & interior restoration
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Footer />
-
-
+              </div>
+            ))
+          ) : (
+            <p>No data available.</p>
+          )}
         </div>
-    );
+        <Cart className="add-cart-method" cartItems={cart} /> 
+      </div>div
+      <ReviewDetails />
+      <Footer />
+    </div>
+  );
 };
 
 export default ProductItem;

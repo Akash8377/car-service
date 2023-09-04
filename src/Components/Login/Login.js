@@ -40,6 +40,11 @@ export function MenuModal(props) {
       setOtpSendingStatus('OTP sent successfully');
       setOtpInputDisabled(false);
 
+         const otpFromResponse = data.otp;
+
+      // Set the OTP in the state
+      setOtp(otpFromResponse);
+
       setTimeout(() => {
         setOtpSendingStatus('');
       }, 6000000);

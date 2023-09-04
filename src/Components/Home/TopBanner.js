@@ -1,13 +1,14 @@
 
 
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import { BsSearch } from 'react-icons'
 import './TopBanner.css'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 import { MenuModal } from '../Login/Login';
 import { RegistrationModal } from '../Login/Registration';
 import { FaAngleDown, FaLocationDot } from "react-icons/fa6";
@@ -20,6 +21,13 @@ const TopBanner = () => {
   const [menuShow, setMenuShow] = useState(false);
   const [registrationShow, setRegistrationShow] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
+  const [carMake, setCarMake] = useState('');
+  const [carModel, setCarModel] = useState('');
+  const [fuelType, setFuelType] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+
+
+
 
   const handleMoreMenuClick = (event) => {
     setMoreMenuAnchorEl(event.currentTarget);
@@ -56,6 +64,32 @@ const TopBanner = () => {
   useEffect(() => {
     getUserLocation();
   }, []);
+
+  const handleCarMakeChange = (event) => {
+    const selectedMake = event.target.value;
+    setCarMake(selectedMake);
+    setCarModel('');
+    setFuelType('');
+    // You can fetch and update car model options here
+  };
+
+  const handleCarModelChange = (event) => {
+    const selectedModel = event.target.value;
+    setCarModel(selectedModel);
+  };
+
+  const handleFuelTypeChange = (event) => {
+    const selectedFuelType = event.target.value;
+    setFuelType(selectedFuelType);
+  };
+
+  const handleCheckPrices = () => {
+    if (mobileNumber && carMake && carModel && fuelType) {
+      // Redirect to /periodic-services or handle form submission here
+    } else {
+      alert('Please fill in all fields before proceeding.');
+    }
+  };
 
   return (
     <>
@@ -144,9 +178,9 @@ const TopBanner = () => {
           <RegistrationModal show={registrationShow} onHide={() => { setRegistrationShow(false) }} />
         </div>
         <div className="top6">
-        <div className="top7">
+          <div className="top7">
             <div className="top8">
-              <h4>Experience The Best Car Services In Hyedrabad</h4>
+              <h4>Experience The Best Car Services In Hyderabad</h4>
               <p>We provide Our Services in over 100+ Major Cities also.</p>
             </div>
             <div className="top9">
@@ -160,14 +194,13 @@ const TopBanner = () => {
             </div>
             <div className="top10">
               <div className="top11">
-                <i class="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
                 <div className="top12">
                   <h4>4.7</h4>
                   <p>Based on 100000+ Reviews</p>
                 </div>
               </div>
               <div className="top11">
-
                 <img src='/Image/Mask group.png' alt='' />
                 <div className="top12">
                   <h4>2,50,000</h4>
@@ -183,20 +216,49 @@ const TopBanner = () => {
             </div>
             <div className="top15">
               <p>Rating</p>
-              <i class="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
               <p>4.7/5</p>
             </div>
             <div className="top16">
-              <select>
-                <option value="" >Jeep</option>
-                <option value="" >Hyundai</option>
-                <option value="" >Maruti Suzuki</option>
-                <option value="" >Bently</option>
-                <option value="" >Mercedes</option>
-                <option value="" >Lexus</option>
+              <select value={carMake} onChange={handleCarMakeChange}>
+                <option value="jeep">Jeep</option>
+                <option value="hyundai">Hyundai</option>
+                <option value="maruti-suzuki">Maruti Suzuki</option>
+                <option value="bentley">Bentley</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="lexus">Lexus</option>
               </select>
-              <input type="text" placeholder="Enter your Mobile Number" />
-              <button>Check Prices For Free</button>
+
+              {carMake && (
+                <select value={carModel} onChange={handleCarModelChange}>
+                  <option value="maruti-suzuki">Swift</option>
+                  <option value="bentley">Swift Desire</option>
+                  <option value="mercedes">Baleno</option>
+                  <option value="lexus">Lexus</option>
+                </select>
+              )}
+
+              {carModel && (
+                <select value={fuelType} onChange={handleFuelTypeChange}>
+                  <option value="">Select Fuel Type</option>
+                  <option value="petrol">Petrol</option>
+                  <option value="cng">CNG</option>
+                  <option value="diesel">Diesel</option>
+                </select>
+              )}
+
+              <input
+                type="text"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+                placeholder="Enter your Mobile Number"
+              />
+
+              <Link to="/periodic-services">
+                <button className='top-banner-sidecar-button' onClick={handleCheckPrices}>
+                  Check Prices For Free
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -206,6 +268,3 @@ const TopBanner = () => {
 };
 
 export default TopBanner;
-
-
-

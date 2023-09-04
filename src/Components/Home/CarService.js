@@ -58,7 +58,7 @@ const CarService = () => {
                         </div>
                        
                         <div className="home3">
-                            <Link className="decoration-car-services" to="/services-repair" style={{ textDecoration: 'none' }}>
+                            <Link className="decoration-car-services" to="/inspection" style={{ textDecoration: 'none' }}>
                                 <img src="./Image/40.png" alt="" />
                                 <p>Insurance</p>
                             </Link>

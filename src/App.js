@@ -17,6 +17,11 @@ import Denting from './Components/Service/DentingRepairing';
 import Detailing from './Components/Service/DetailingService';
 import SPA from './Components/Service/ServiceSpa';
 import Wind from './Components/Service/WindShield';
+import AddCart from './Components/Service/AddCart';
+import Inspection from './Components/Service/Inspection'
+
+
+
 function App() {
   return (
     <div className="App">
@@ -39,6 +44,9 @@ function App() {
           <Route path="/detailing-service" element={<Detailing/>} />
           <Route path="/spa-service" element={<SPA/>} />
           <Route path="/wind-sheild" element={<Wind/>} />
+          <Route path="/add-cart" element={<AddCart/>} />
+          <Route path="/inspection" element={<Inspection/>} />
+        
         </Routes>
       </BrowserRouter>
     </div>
