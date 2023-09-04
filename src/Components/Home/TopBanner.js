@@ -255,9 +255,14 @@ const TopBanner = () => {
               />
 
               <Link to="/periodic-services">
-                <button className='top-banner-sidecar-button' onClick={handleCheckPrices}>
+                <button
+                  className='top-banner-sidecar-button'
+                  onClick={handleCheckPrices}
+                  style={{ backgroundColor: '#001B39' }}
+                >
                   Check Prices For Free
                 </button>
+
               </Link>
             </div>
           </div>
