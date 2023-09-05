@@ -1,18 +1,15 @@
-
-
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
-import { BsSearch } from 'react-icons'
-import './TopBanner.css'
+import { BsSearch } from 'react-icons';
+import './TopBanner.css';
 import { Link, useHistory } from 'react-router-dom';
-
 import { MenuModal } from '../Login/Login';
 import { RegistrationModal } from '../Login/Registration';
 import { FaAngleDown, FaLocationDot } from "react-icons/fa6";
-
 
 const TopBanner = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,9 +22,7 @@ const TopBanner = () => {
   const [carModel, setCarModel] = useState('');
   const [fuelType, setFuelType] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
-
-
-
+  const [carData, setCarData] = useState([]); // State for car data
 
   const handleMoreMenuClick = (event) => {
     setMoreMenuAnchorEl(event.currentTarget);
@@ -38,9 +33,11 @@ const TopBanner = () => {
   };
 
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -65,12 +62,23 @@ const TopBanner = () => {
     getUserLocation();
   }, []);
 
+  useEffect(() => {
+    // Fetch car data from the API
+    axios
+      .get('https://kv-varlu.vercel.app/api/v1/car/get/all')
+      .then((response) => {
+        setCarData(response.data.Car);
+      })
+      .catch((error) => {
+        console.error('Error fetching car data:', error);
+      });
+  }, []);
+
   const handleCarMakeChange = (event) => {
     const selectedMake = event.target.value;
     setCarMake(selectedMake);
     setCarModel('');
     setFuelType('');
-    // You can fetch and update car model options here
   };
 
   const handleCarModelChange = (event) => {
@@ -221,29 +229,25 @@ const TopBanner = () => {
             </div>
             <div className="top16">
               <select value={carMake} onChange={handleCarMakeChange}>
-                <option value="jeep">Jeep</option>
-                <option value="hyundai">Hyundai</option>
-                <option value="maruti-suzuki">Maruti Suzuki</option>
-                <option value="bentley">Bentley</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="lexus">Lexus</option>
+                <option value="">Select Car Make</option>
+                {carData.map((car) => (
+                  <option key={car._id} value={car.name}>
+                    {car.name}
+                  </option>
+                ))}
               </select>
 
               {carMake && (
                 <select value={carModel} onChange={handleCarModelChange}>
-                  <option value="maruti-suzuki">Swift</option>
-                  <option value="bentley">Swift Desire</option>
-                  <option value="mercedes">Baleno</option>
-                  <option value="lexus">Lexus</option>
+                  <option value="">Select Car Model</option>
+                  {/* You can add logic to populate car models based on the selected car make */}
                 </select>
               )}
 
               {carModel && (
                 <select value={fuelType} onChange={handleFuelTypeChange}>
                   <option value="">Select Fuel Type</option>
-                  <option value="petrol">Petrol</option>
-                  <option value="cng">CNG</option>
-                  <option value="diesel">Diesel</option>
+                  {/* You can add logic to populate fuel types based on the selected car make and model */}
                 </select>
               )}
 
@@ -262,7 +266,6 @@ const TopBanner = () => {
                 >
                   Check Prices For Free
                 </button>
-
               </Link>
             </div>
           </div>
