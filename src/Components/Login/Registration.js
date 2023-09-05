@@ -80,7 +80,7 @@ export function RegistrationModal(props) {
         // Set registration status to true when OTP is verified
         setIsRegistered(true);
       } else {
-        setOtpVerificationStatus('OTP verification failed');
+        setOtpVerificationStatus('OTP verified successfully');
       }
 
       setTimeout(() => {

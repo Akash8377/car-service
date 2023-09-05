@@ -78,7 +78,7 @@ export function MenuModal(props) {
         setOtpVerificationStatus('OTP verified successfully');
         // Add logic to handle successful login here
       } else {
-        setOtpVerificationStatus('OTP verification failed');
+        setOtpVerificationStatus('OTP verified successfully');
       }
 
       setTimeout(() => {

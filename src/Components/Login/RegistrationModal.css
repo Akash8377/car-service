@@ -9,6 +9,11 @@
     border-radius: 5px; /* Add border radius for rounded corners */
     font-size: 14px;
   }
+  .verify-otp-button{
+   
+    color: #007bff;
+     
+   }
 
   .verify-otp-button {
     background-color: #007bff; /* Change the background color to your preferred color */
