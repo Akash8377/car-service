@@ -240,14 +240,24 @@ const TopBanner = () => {
               {carMake && (
                 <select value={carModel} onChange={handleCarModelChange}>
                   <option value="">Select Car Model</option>
-                  {/* You can add logic to populate car models based on the selected car make */}
+              
+                  {carData.map((car) => (
+                  <option key={car._id} value={car.manufacturer}>
+                    {car.manufacturer}
+                  </option>
+                ))}
                 </select>
               )}
 
               {carModel && (
                 <select value={fuelType} onChange={handleFuelTypeChange}>
                   <option value="">Select Fuel Type</option>
-                  {/* You can add logic to populate fuel types based on the selected car make and model */}
+             
+                  {carData.map((car) => (
+                  <option key={car._id} value={car.fuelType}>
+                    {car.fuelType}
+                  </option>
+                ))}
                 </select>
               )}
 
