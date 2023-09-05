@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
     const fetchTerms = async () => {
         try {
             const response = await axios.get('https://kv-varlu.vercel.app//api/v1/privacy');
-            setPolicyData({ privacy: response.data.terms }); 
+            setPolicyData({ privacy: response.data.privacy }); 
         } catch (error) {
             console.error('Error fetching terms:', error);
         }
@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
             <CustomHeader />
             <div className='termCondition-main'>
                 <h2 className='termcondition-heading-1'>Privacy Policy</h2>
-                <p className='termcondition-paragraph-1'>{policyData.privacy.terms}</p>
+                <p className='termcondition-paragraph-1'>{policyData.privacy.privacy}</p>
             </div>
             <Footer />
         </div>
