@@ -100,3 +100,23 @@
 .Review-Container-6{
     margin-left:20px;
 }
+/* ResponsiveStyles.css */
+
+/* For screens smaller than 768px (e.g., mobile devices) */
+@media (max-width: 768px) {
+    .periodic-service-main {
+      margin-left: 10px;
+    }
+  
+    /* Add more responsive styles as needed */
+  }
+  
+  /* For screens between 768px and 1024px (e.g., tablets) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .periodic-service-main {
+      margin-left: 15px;
+    }
+  
+    /* Add more responsive styles as needed */
+  }
+  

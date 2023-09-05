@@ -172,9 +172,12 @@ code {
   line-height: normal;
   letter-spacing: 0.113px;
   margin: 0;
+  align-items: center;
+ 
 }
 .top12 p {
   color: #fff;
+  text-align: center;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
@@ -183,53 +186,96 @@ code {
   letter-spacing: 0.09px;
   margin: 0;
 }
-
+/* Base styles for .top13 */
 .top13 {
-  width: 25%;
-  height: 484px;
+  width: 100%;
+  max-width: 400px; /* Adjust this value based on your design */
+  height: auto;
   border-radius: 20px;
   background: #fff;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
+
+margin-left: 65%;
+  padding: 20px;
+  text-align: center;
   position: fixed;
-  right: 20px;
 }
 
+/* Styles for .top14 */
 .top14 {
-  padding-top: 20px;
-  padding-left: 20px;
+  padding-top: 10px;
 }
+
 .top14 h3 {
   color: #000;
   font-family: Poppins;
-  font-size: 32px;
-  font-style: normal;
+  font-size: 24px; /* Adjust font size as needed */
   font-weight: 600;
-  line-height: 138.5%; /* 44.32px */
-  letter-spacing: 0.113px;
-  width: 70%;
   margin: 0;
 }
 
 .top14 p {
   color: #282828;
   font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
+  font-size: 16px; /* Adjust font size as needed */
   font-weight: 500;
-  line-height: 24.84px; /* 138% */
-  letter-spacing: 0.09px;
   margin: 0;
-  width: 60%;
-  margin-top: 2px;
+  margin-top: 10px;
 }
+
+/* Styles for .top15 */
+.top15 {
+  margin-top: 20px;
+}
+
+.top15 p {
+  color: #282828;
+  font-family: Inter;
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Styles for .top16 */
+.top16 {
+  margin-top: 20px;
+}
+
+/* Responsive media query */
+@media screen and (max-width: 600px) {
+  .top13 {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .top14 h3 {
+    font-size: 20px; /* Adjust font size for smaller screens */
+    width: 100%;
+  }
+
+  .top14 p {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    width: 100%;
+  }
+
+  .top15 p {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .top16 {
+    margin-top: 10px;
+  }
+}
+
 
 .top15 {
   margin-top: 2px;
-  margin-left: 5%;
+  margin-left: 28%;
   width: 40%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+
 }
 .top15 p {
   color: #fbbc04;

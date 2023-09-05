@@ -1,16 +1,42 @@
-.Find_Work_Modal{
-    text-align: center;
-}
-.coupon-text-main{
-    
+.Find_Work_Modal {}
+
+.coupon-text-main {
+
     background-color: #D9D9D9;
-    height:30px;
+    height: 30px;
     border-radius: 6px;
 }
-.availabe-coupon-text{
-    
+
+.availabe-coupon-text {
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0.18000000715255737px;
+    text-align: left;
+    color: #001B39;
+
 }
-.coupon-input-check{
+
+.coupon-1-main {
+    border: 1px solid #001B39;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: #EEEEEE;
+}
+
+.term-condition-coupon {
+    text-decoration: none;
    
-   
+}
+
+
+.coupon-main-para-1 {
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #001B39
 }

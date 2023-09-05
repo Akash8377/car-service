@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import image112 from '../../image/112.png'
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // Import Button component from react-bootstrap
 import '../../style/Coupon.css';
+import {Link} from 'react-router-dom'
 
 export function MenuModal(props) {
   const [couponCode, setCouponCode] = useState('');
@@ -66,6 +68,20 @@ export function MenuModal(props) {
         </div>
         <div className="availabe-coupon-text" style={{ marginTop: '10px' }}>
           AVAILABLE COUPONS
+        </div>
+        <div className='coupon-1-main'>
+        <div className="top3">
+            <img src="./Image/2.png" alt="" height="50px" width="50px"/>
+            <h3 >CAR SERVICE</h3>
+          </div>
+          <p className='coupon-main-para-1'>Flat 10% OFF on Scheduled Services, AC, Brakes, Detailing & Cleaning.</p>
+          <Link className="term-condition-coupon" to="/term-condition" style={{ textDecoration: 'none', color: '#001B39', fontWeight: 700 }}>VIEW T&C</Link>
+
+
+
+          <p className='coupon-main-para-1'>*Applicable with any Periodic Service  Detailing Service.</p>
+          
+
         </div>
       </Modal.Body>
       <Modal.Footer>
