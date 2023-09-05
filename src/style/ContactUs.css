@@ -1,4 +1,5 @@
 .contact-us-data {
+    width:800px;
     margin-left: 20px;
     font-family: Poppins;
     font-size: 18px;
@@ -11,7 +12,8 @@
 
 .contact-us-2 {
     display: flex;
-    gap: 20%
+    gap:10%
+    
 }
 
 .information-contact-us {
