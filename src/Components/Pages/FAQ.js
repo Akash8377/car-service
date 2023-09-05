@@ -47,8 +47,6 @@
 
 // export default FAQ;
 
-
-
 import React, { useState, useEffect } from "react";
 import CustomHeader from './CustomerHeading';
 import image29 from '../../image/29.png';
@@ -66,7 +64,7 @@ const FAQ = () => {
       const response = await fetch('https://kv-varlu.vercel.app/api/v1/faq');
       if (response.ok) {
         const data = await response.json();
-        setFaqData(data);
+        setFaqData(data.faqs);
       } else {
         throw new Error('Failed to fetch FAQ data');
       }
@@ -103,16 +101,16 @@ const FAQ = () => {
             <p>Loading FAQ data...</p>
           ) : (
             Array.isArray(faqData) && faqData.length > 0 ? (
-              faqData.map((question) => (
-                <div key={question.id} className="entity">
+              faqData.map((faq) => (
+                <div key={faq._id} className="entity">
                   <div
                     className="question"
-                    onClick={() => handleQuestionClick(question.id)}
+                    onClick={() => handleQuestionClick(faq._id)}
                   >
-                    {question.question}
-                    {openQuestionId === question.id ? <h3>^</h3> : <h3>+</h3>}
+                    {faq.question}
+                    {openQuestionId === faq._id ? <h3>^</h3> : <h3>+</h3>}
                   </div>
-                  {openQuestionId === question.id && <p className="text">{question.answer}</p>}
+                  {openQuestionId === faq._id && <p className="text">{faq.answer}</p>}
                 </div>
               ))
             ) : (
@@ -127,4 +125,3 @@ const FAQ = () => {
 };
 
 export default FAQ;
-

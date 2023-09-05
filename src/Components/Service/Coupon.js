@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import image112 from '../../image/112.png'
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // Import Button component from react-bootstrap
 import '../../style/Coupon.css';
