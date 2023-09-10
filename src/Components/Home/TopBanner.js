@@ -34,9 +34,19 @@ const TopBanner = () => {
   const [apiResponse, setApiResponse] = useState(null);
   const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();
   const isUser = isAuthenticated && user;
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem('isLoggedIn') === 'true'
+  );
   const handleLogin = () => {
     setIsLoggedIn(true);
+    // Store login status in localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    // Clear login status from localStorage
+    localStorage.removeItem('isLoggedIn');
   };
   
 
@@ -263,12 +273,16 @@ const TopBanner = () => {
               </Menu>
             </p>
             {isLoggedIn ? (
-              <button className='nav-button-2' onClick={() => setIsLoggedIn(false)}>Logout</button>
-            ) : (
-              <>
-                <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
-              </>
-            )}
+        <button className='nav-button-2' onClick={handleLogout}>
+          Logout
+        </button>
+      ) : (
+        <>
+          <button className='nav-button-2' onClick={() => setMenuShow(true)}>
+            Login
+          </button>
+        </>
+      )}
 
             <button className='nav-button-2' onClick={() => setRegistrationShow(true)}>Registration</button>
           </div>

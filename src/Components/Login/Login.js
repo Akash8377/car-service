@@ -83,6 +83,9 @@ const handleVerifyOtpClick = async () => {
       setIsLoggedIn(true);
       props.onHide();
       props.onLogin(); // Call the callback to update the state in TopBanner
+
+      // Store login status in localStorage
+      localStorage.setItem('isLoggedIn', 'true');
     } else {
       setOtpVerificationStatus('OTP verification failed');
     }
