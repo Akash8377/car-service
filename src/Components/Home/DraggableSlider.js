@@ -21,9 +21,11 @@ const Workshop = () => {
         <h3>Choose the workshop Near You</h3>
         <div className="home70">
           <Slider {...settings}>
+            <div>
             <Link className="link-class-main" to="/">
-              Our Services
+            Our Services
             </Link>
+            </div>
             <Link className="link-class-main" to="/">
               Curated Custom Service
             </Link>

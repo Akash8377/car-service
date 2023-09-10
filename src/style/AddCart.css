@@ -7,8 +7,13 @@
     padding:10px;
     box-shadow: 0px 10px 10px rgba(0.2, 0.2, 0.2, 0.2);
 }
+
 .add-cart-header{
     display: flex;
+}
+.add-cart-cancel-option{
+    margin-bottom: 25px;
+    margin-left:60px
 }
 
 .checkout-button{

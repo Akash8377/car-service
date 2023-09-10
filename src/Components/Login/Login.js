@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// MenuModal.js
+
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Modal } from 'react-bootstrap';
@@ -12,6 +14,7 @@ export function MenuModal(props) {
   const [otpSendingStatus, setOtpSendingStatus] = useState('');
   const [otpVerificationStatus, setOtpVerificationStatus] = useState('');
   const [otpInputDisabled, setOtpInputDisabled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Store the login state
 
   const handleMobileNumberChange = (e) => {
     setMobileNumber(e.target.value);
@@ -40,7 +43,7 @@ export function MenuModal(props) {
       setOtpSendingStatus('OTP sent successfully');
       setOtpInputDisabled(false);
 
-         const otpFromResponse = data.otp;
+      const otpFromResponse = data.otp;
 
       // Set the OTP in the state
       setOtp(otpFromResponse);
@@ -58,46 +61,46 @@ export function MenuModal(props) {
       }, 4000);
     }
   };
-
-  const handleVerifyOtpClick = async () => {
-    try {
-      const { data } = await axios.post(
-        'https://kv-varlu.vercel.app/api/v1/verify/login',
-        {
-          mobileNumber: mobileNumber,
-          otp: otp,
+const handleVerifyOtpClick = async () => {
+  try {
+    const { data } = await axios.post(
+      'https://kv-varlu.vercel.app/api/v1/verify/login',
+      {
+        mobileNumber: mobileNumber,
+        otp: otp,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      if (data.success) {
-        setOtpVerificationStatus('OTP verified successfully');
-        // Add logic to handle successful login here
-      } else {
-        setOtpVerificationStatus('OTP verified successfully');
       }
+    );
 
-      setTimeout(() => {
-        setOtpVerificationStatus('');
-      }, 6000000);
+    console.log('OTP Verification Response:', data); // Log the response
 
-      // Disable OTP input after verification
-      setOtpInputDisabled(true);
-    } catch (error) {
-      console.error('OTP Verification Error:', error);
-
+    if (data) {
+      setOtpVerificationStatus('OTP verified successfully');
+      setIsLoggedIn(true);
+      props.onHide();
+      props.onLogin(); // Call the callback to update the state in TopBanner
+    } else {
       setOtpVerificationStatus('OTP verification failed');
-
-      setTimeout(() => {
-        setOtpVerificationStatus('');
-      }, 6000);
     }
-  };
 
+    setTimeout(() => {
+      setOtpVerificationStatus('');
+    }, 6000000);
+
+    setOtpInputDisabled(true);
+  } catch (error) {
+    console.error('OTP Verification Error:', error);
+    setOtpVerificationStatus('OTP verification failed');
+
+    setTimeout(() => {
+      setOtpVerificationStatus('');
+    }, 6000);
+  }
+};
   return (
     <Modal
       {...props}

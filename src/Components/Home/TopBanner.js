@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ServiceContext } from '../../context/ServiceContext';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import { BsSearch } from 'react-icons';
+import { useAuth0 } from "@auth0/auth0-react";
 import './TopBanner.css';
-import { Link, useHistory } from 'react-router-dom';
+
+
+
 import { MenuModal } from '../Login/Login';
 import { RegistrationModal } from '../Login/Registration';
 import { FaAngleDown, FaLocationDot } from "react-icons/fa6";
 
+
 const TopBanner = () => {
+  const { carInfo, setCarInfo } = useContext(ServiceContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
@@ -23,6 +31,15 @@ const TopBanner = () => {
   const [fuelType, setFuelType] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [carData, setCarData] = useState([]); // State for car data
+  const [apiResponse, setApiResponse] = useState(null);
+  const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();
+  const isUser = isAuthenticated && user;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+  
+
 
   const handleMoreMenuClick = (event) => {
     setMoreMenuAnchorEl(event.currentTarget);
@@ -41,6 +58,7 @@ const TopBanner = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const navigate = useNavigate();
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
@@ -62,42 +80,107 @@ const TopBanner = () => {
     getUserLocation();
   }, []);
 
+  const [carMakes, setCarMakes] = useState([]);
+  const [carModels, setCarModels] = useState([]);
+  const [fuelTypes, setFuelTypes] = useState([]);
+
+  // Fetch car makes from the API
   useEffect(() => {
-    // Fetch car data from the API
     axios
-      .get('https://kv-varlu.vercel.app/api/v1/car/get/all')
+      .get('https://kv-varlu.vercel.app/api/v1/model')
       .then((response) => {
-        setCarData(response.data.Car);
+        setCarMakes(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching car data:', error);
+        console.error('Error fetching car makes:', error);
       });
   }, []);
+
+  // Fetch car models from the API based on selected make
+  useEffect(() => {
+    if (carMake) {
+      axios
+        .get(`https://kv-varlu.vercel.app/api/v1/manufacturer?make=${carMake}`)
+        .then((response) => {
+          setCarModels(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching car models:', error);
+        });
+    }
+  }, [carMake]);
+
+  // Fetch fuel types from the API based on selected model
+  useEffect(() => {
+    if (carModel) {
+      axios
+        .get(`https://kv-varlu.vercel.app/api/v1/fuelType?model=${carModel}`)
+        .then((response) => {
+          setFuelTypes(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching fuel types:', error);
+        });
+    }
+  }, [carModel]);
 
   const handleCarMakeChange = (event) => {
     const selectedMake = event.target.value;
     setCarMake(selectedMake);
+
     setCarModel('');
     setFuelType('');
+    setCarInfo(prev => ({ ...prev, manufacturer: selectedMake }));
   };
 
   const handleCarModelChange = (event) => {
     const selectedModel = event.target.value;
     setCarModel(selectedModel);
+    setCarInfo(prev => ({ ...prev, model: selectedModel }));
   };
 
   const handleFuelTypeChange = (event) => {
     const selectedFuelType = event.target.value;
     setFuelType(selectedFuelType);
+    setCarInfo(prev => ({ ...prev, fuelType: selectedFuelType }));
   };
-
   const handleCheckPrices = () => {
     if (mobileNumber && carMake && carModel && fuelType) {
-      // Redirect to /periodic-services or handle form submission here
-    } else {
-      alert('Please fill in all fields before proceeding.');
+      // Prepare the request data with carMake as model and carModel as make
+      const requestData = {
+        manufacturer: carModel,
+        model: carMake,
+        fuelType: fuelType,
+      };
+
+      // Send a GET request to the API
+      axios
+        .get('', {
+          params: requestData,
+        })
+        .then((response) => {
+          // Handle the API response here
+          console.log('API Response:', response.data);
+
+          // Navigate to the desired page, e.g., '/periodic-services'
+          navigate('/periodic-services');
+        })
+        .catch((error) => {
+          console.log('Error fetching car service prices:', error);
+          // navigate('/periodic-services');
+
+
+          // You can also log the error response for more details
+          if (error.response) {
+
+            console.log('Error Response Data:', error.response.data);
+
+          }
+        });
     }
   };
+
+
 
   return (
     <>
@@ -179,10 +262,18 @@ const TopBanner = () => {
                 <MenuItem className='more-menu-item' onClick={handleMoreMenuClose}><Link to="/reviews" className='menuitem-all-option'>Reviews</Link></MenuItem>
               </Menu>
             </p>
-            <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
+            {isLoggedIn ? (
+              <button className='nav-button-2' onClick={() => setIsLoggedIn(false)}>Logout</button>
+            ) : (
+              <>
+                <button className='nav-button-2' onClick={() => setMenuShow(true)}>Login</button>
+              </>
+            )}
+
             <button className='nav-button-2' onClick={() => setRegistrationShow(true)}>Registration</button>
           </div>
-          <MenuModal show={menuShow} onHide={() => { setMenuShow(false) }} />
+          <MenuModal show={menuShow} onHide={() => { setMenuShow(false) }} onLogin={handleLogin} />
+
           <RegistrationModal show={registrationShow} onHide={() => { setRegistrationShow(false) }} />
         </div>
         <div className="top6">
@@ -230,9 +321,9 @@ const TopBanner = () => {
             <div className="top16">
               <select value={carMake} onChange={handleCarMakeChange}>
                 <option value="">Select Car Make</option>
-                {carData.map((car) => (
-                  <option key={car._id} value={car.name}>
-                    {car.name}
+                {carMakes.map((make) => (
+                  <option key={make._id} value={make._id}>
+                    {make.name}
                   </option>
                 ))}
               </select>
@@ -240,24 +331,22 @@ const TopBanner = () => {
               {carMake && (
                 <select value={carModel} onChange={handleCarModelChange}>
                   <option value="">Select Car Model</option>
-              
-                  {carData.map((car) => (
-                  <option key={car._id} value={car.manufacturer}>
-                    {car.manufacturer}
-                  </option>
-                ))}
+                  {carModels.map((model) => (
+                    <option key={model._id} value={model._id}>
+                      {model.name}
+                    </option>
+                  ))}
                 </select>
               )}
 
               {carModel && (
                 <select value={fuelType} onChange={handleFuelTypeChange}>
                   <option value="">Select Fuel Type</option>
-             
-                  {carData.map((car) => (
-                  <option key={car._id} value={car.fuelType}>
-                    {car.fuelType}
-                  </option>
-                ))}
+                  {fuelTypes.map((fuel) => (
+                    <option key={fuel._id} value={fuel._id}>
+                      {fuel.name}
+                    </option>
+                  ))}
                 </select>
               )}
 
@@ -268,7 +357,10 @@ const TopBanner = () => {
                 placeholder="Enter your Mobile Number"
               />
 
-              <Link to="/periodic-services">
+              {/* <Link to="/periodic-services"> */}
+              {mobileNumber && carMake && carModel && fuelType ? (
+
+                //  <Link to="/periodic-services">
                 <button
                   className='top-banner-sidecar-button'
                   onClick={handleCheckPrices}
@@ -276,7 +368,21 @@ const TopBanner = () => {
                 >
                   Check Prices For Free
                 </button>
-              </Link>
+                // </Link>
+
+
+
+
+
+              ) : (
+                <button
+                  className='top-banner-sidecar-button'
+                  style={{ backgroundColor: '#001B39' }}
+                >
+                  Check Prices For Free
+                </button>
+              )}
+              {/* </Link> */}
             </div>
           </div>
         </div>

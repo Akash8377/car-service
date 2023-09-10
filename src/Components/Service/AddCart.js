@@ -1,29 +1,55 @@
-// Cart.js
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import '../../style/AddCart.css';
 import image111 from '../../image/111.png';
-import CouponModal from './Coupon'
+import CouponModal from './Coupon';
+import { useNavigate } from 'react-router-dom';
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, setCart }) => {
   const [couponShow, setCouponShow] = useState(false);
+  const navigate = useNavigate();
+
+  // Function to remove an item from the cart
+  const handleRemoveFromCart = (itemId) => {
+    const updatedCart = cartItems.filter((item) => item.id !== itemId);
+    setCart(updatedCart);
+  };
+
+  // Calculate subtotal
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+
+
   return (
     <div className='cart-container'>
-       <CouponModal show={couponShow} onHide={() => { setCouponShow(false) }} />
-      <img src={image111} alt=""/>
+      <CouponModal show={couponShow} onHide={() => setCouponShow(false)} />
+      <img src={image111} alt='' />
       <h2>Your Cart</h2>
-      {cartItems && cartItems.length > 0 ? ( 
+      {cartItems && cartItems.length > 0 ? (
         <div>
-          {cartItems.map((item, index) => (
-            <div key={index} className='cart-item'>
-              <img src={item.imageUrl} alt={item.title} height="20px" width="20px"/>
-              <h5>{item.subHeading}</h5>
-              <p>₹ {item.price}</p>
-              
+          {cartItems.map((item) => (
+            <div key={item.id} className='cart-item'>
+              <h5>{item.title}</h5>
+              <div>
+                <p>₹ {item.price}</p>
+              </div>
+              {/* Remove button */}
+              <button
+                className='add-cart-cancel-option'
+                onClick={() => handleRemoveFromCart(item.id)}
+                style={{ color: 'black', textDecoration: 'none' }}
+              >
+                𐤕
+              </button>
             </div>
           ))}
-          
-          <button className='coupon-checkout' onClick={() => setCouponShow(true)}>Coupon</button>
-          <button className='checkout-button'>Checkout</button>
+          {/* Display subtotal */}
+          <div className='subtotal'>
+            <p>Subtotal: ₹ {subtotal}</p>
+          </div>
+          <button className='coupon-checkout' onClick={() => setCouponShow(true)}>
+            Coupon
+          </button>
+          <button className='checkout-button' onClick={() => navigate('/checkout')}>Checkout</button>
+
         </div>
       ) : (
         <p>Your cart is empty.</p>

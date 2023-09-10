@@ -150,7 +150,7 @@ const ProductItem = ({ title, price, imageUrl }) => {
               <p>No data available.</p>
             )}
           </div>
-          <Cart className="add-cart-method" cartItems={cart} /> 
+          <Cart cartItems={cart} setCart={setCart} />
         </div>div
         <ReviewDetails />
         <Footer />

@@ -74,31 +74,42 @@ export function RegistrationModal(props) {
           },
         }
       );
-
-      if (data.success) {
+  
+      if (data) {
+        // OTP is verified successfully
         setOtpVerificationStatus('OTP verified successfully');
         // Set registration status to true when OTP is verified
         setIsRegistered(true);
       } else {
-        setOtpVerificationStatus('OTP verified successfully');
+        // OTP verification failed on the server-side
+        setOtpVerificationStatus('OTP verification failed. Please check your OTP.');
       }
-
-      setTimeout(() => {
-        setOtpVerificationStatus('');
-      }, 60000);
-
-      // Disable OTP input after verification
-      setOtpInputDisabled(true);
+  
+      // Clear the OTP input field after verification
+      setOtp('');
+  
     } catch (error) {
       console.error('OTP Verification Error:', error);
-
-      setOtpVerificationStatus('OTP verification failed');
-
-      setTimeout(() => {
-        setOtpVerificationStatus('');
-      }, 6000);
+  
+      if (error.response) {
+        // Server returned an error response (e.g., invalid request)
+        setOtpVerificationStatus('Server error. Please try again later.');
+      } else if (error.request) {
+        // Request was made, but there was no response (e.g., network error)
+        setOtpVerificationStatus('Network error. Please check your internet connection.');
+      } else {
+        // Something else went wrong
+        setOtpVerificationStatus('An error occurred. Please try again later.');
+      }
+    } finally {
+      // Enable OTP input after handling the verification result
+      setOtpInputDisabled(false);
+  
+      // Clear the OTP field in any case (whether successful or not)
+      setOtp('');
     }
   };
+  
 
   const handleRegisterClick = () => {
     // Add logic to complete the registration process

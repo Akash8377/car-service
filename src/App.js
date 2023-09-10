@@ -18,7 +18,8 @@ import Detailing from './Components/Service/DetailingService';
 import SPA from './Components/Service/ServiceSpa';
 import Wind from './Components/Service/WindShield';
 import AddCart from './Components/Service/AddCart';
-import Inspection from './Components/Service/Inspection'
+import Inspection from './Components/Service/Inspection';
+import Checkout from './Components/Service/Checkout'
 
 
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/wind-sheild" element={<Wind/>} />
           <Route path="/add-cart" element={<AddCart/>} />
           <Route path="/inspection" element={<Inspection/>} />
+          <Route path="/checkout" element={<Checkout/>} />
         
         </Routes>
       </BrowserRouter>
